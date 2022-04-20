@@ -295,4 +295,3 @@ console.log(teacher.__proto__ === Teacher.prototype);
 
 
 
-## 响应式
