@@ -586,3 +586,63 @@ Promise.any([p1, p2, p3]).then(res => {
 // res 1111
 ```
 
+
+
+## *<u>手写Promise(待看)</u>*
+
+### 1 Promise结构设计
+
+### 2 constructor
+
+```js
+// ES6 ES2015
+
+const PROMISE_STATUS_PENDING = 'pending'
+const PROMISE_STATUS_FULFILLED = 'fulfilled'
+const PROMISE_STATUS_REJECTED = 'rejected'
+
+class HYPromise {
+    constructor(executor) {
+        this.status = PROMISE_STATUS_PENDING
+        this.value = undefined
+        this.reason = undefined
+
+        const resolve = (value) => {
+            if (this.status === PROMISE_STATUS_PENDING) {
+                this.status = PROMISE_STATUS_FULFILLED
+                this.value = value
+                console.log("resolve被调用");
+            }
+
+        }
+
+        const reject = (reason) => {
+            if (this.status === PROMISE_STATUS_PENDING) {
+                this.status = PROMISE_STATUS_REJECTED
+                this.reason = reason
+                console.log("reject被调用");
+            }
+        }
+
+        executor(resolve, reject)
+    }
+
+
+}
+
+const promise = new HYPromise((resolve, reject) => {
+    console.log("传入的函数被直接调用了");
+    resolve(111222)
+    reject(3333)
+})
+
+promise.then(res => {
+
+}, err => {
+
+})
+```
+
+
+
+### 3 
